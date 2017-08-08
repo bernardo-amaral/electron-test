@@ -1,7 +1,6 @@
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
 const url = require('url')
-
 let win
 
 function createWindow() {
@@ -13,8 +12,8 @@ function createWindow() {
     slashes: true
   }))
 
-  // Open the DevTools.
-  win.webContents.openDevTools()
+  // Open the DevTools. DEBUG
+  //win.webContents.openDevTools()
 
   win.on('closed', () => {
     win = null
