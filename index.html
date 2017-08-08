@@ -3,11 +3,17 @@
   <head>
     <meta charset="UTF-8">
     <title>Hello World!</title>
+
+    <link rel="stylesheet" href="src/main.css" />
+
   </head>
   <body>
-    <h1>Hello World!</h1>
-    We are using node <script>document.write(process.versions.node)</script>,
-    Chrome <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+    <div id="board">
+
+      <div id="o1"></div>
+
+    </div>
   </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
+  <script src="src/render.js"></script>
 </html>

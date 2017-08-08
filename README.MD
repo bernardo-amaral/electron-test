@@ -1,6 +1,5 @@
-FOR TESTS ONLY!!
---
+For tests only!
+==
 
-==To run this app:
-
+To run this app:
 - npm run

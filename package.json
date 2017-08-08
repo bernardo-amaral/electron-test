@@ -5,6 +5,10 @@
   "scripts": {
     "start": "electron ."
   },
+  "dependencies": {
+    "jquery": "latest",
+    "jsdom": "latest"
+  },
   "devDependencies": {
     "electron": "~1.6.2"
   }
