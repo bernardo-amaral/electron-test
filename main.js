@@ -12,8 +12,10 @@ function createWindow() {
     slashes: true
   }))
 
+  win.setMenu(null);
+
   // Open the DevTools. DEBUG
-  //win.webContents.openDevTools()
+  win.webContents.openDevTools()
 
   win.on('closed', () => {
     win = null
