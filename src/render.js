@@ -9,7 +9,7 @@ var Container = PIXI.Container,
     Sprite = PIXI.Sprite,
     Graphics = PIXI.Graphics;
 
-var ball, state;
+var ball, state, player1;
 var down = true;
 
 var stage = new Container();
@@ -29,7 +29,13 @@ function setup() {
     ball.x = 64;
     ball.y = 130;
 
+    player1 = new Graphics();
+    player1.beginFill(0xFFFFFF);
+    player1.drawRect(5, (renderer.height / 2) - 50, 25, 120);
+    player1.endFill();
+
     stage.addChild(ball);
+    stage.addChild(player1);
     gameLoop();
 }
 
@@ -53,4 +59,35 @@ function play() {
     if (ball.y <= 10) {
         down = true;
     }
+}
+
+function contain(sprite, container) {
+  var collision = undefined;
+
+  //Left
+  if (sprite.x < container.x) {
+    sprite.x = container.x;
+    collision = "left";
+  }
+
+  //Top
+  if (sprite.y < container.y) {
+    sprite.y = container.y;
+    collision = "top";
+  }
+
+  //Right
+  if (sprite.x + sprite.width > container.width) {
+    sprite.x = container.width - sprite.width;
+    collision = "right";
+  }
+
+  //Bottom
+  if (sprite.y + sprite.height > container.height) {
+    sprite.y = container.height - sprite.height;
+    collision = "bottom";
+  }
+
+  //Return the `collision` value
+  return collision;
 }
