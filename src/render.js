@@ -1,5 +1,8 @@
 const PIXI = require('pixi.js');
 
+var Raspi = require('raspi-io');
+var five = require('johnny-five');
+
 var Container = PIXI.Container,
     autoDetectRenderer = PIXI.autoDetectRenderer,
     loader = PIXI.loader,
@@ -38,6 +41,35 @@ function setup() {
     stage.addChild(player1);
     gameLoop();
 }
+
+    // ----START
+
+    var button;
+
+    var board = new five.Board({
+        io: new Raspi()
+    });
+
+    board.on("ready", function() {
+
+        button = new five.Button({
+            pin: 'P1-11',
+            invert: true,
+            holdtime: 100
+        });
+    });
+
+    board.repl.inject({
+        button: button
+    });
+
+    button.on("hold", function() {
+        console.log( "Button held" );
+        player1.y += 10;
+        (new five.Led('P1-13')).on();
+    });
+    // ------END
+
 
 function gameLoop(){
     requestAnimationFrame(gameLoop);
