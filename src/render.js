@@ -1,7 +1,7 @@
 const PIXI = require('pixi.js');
 
-var Raspi = require('raspi-io');
-var five = require('johnny-five');
+// var Raspi = require('raspi-io');
+// var five = require('johnny-five');
 
 var Container = PIXI.Container,
     autoDetectRenderer = PIXI.autoDetectRenderer,
@@ -37,6 +37,7 @@ function setup() {
     player1.drawRect(5, (renderer.height / 2) - 50, 25, 120);
     player1.endFill();
 
+
     stage.addChild(ball);
     stage.addChild(player1);
     gameLoop();
@@ -44,30 +45,30 @@ function setup() {
 
     // ----START
 
-    var button;
+    // var button;
 
-    var board = new five.Board({
-        io: new Raspi()
-    });
+    // var board = new five.Board({
+    //     io: new Raspi()
+    // });
 
-    board.on("ready", function() {
+    // board.on("ready", function() {
 
-        button = new five.Button({
-            pin: 'P1-11',
-            invert: true,
-            holdtime: 100
-        });
-    });
+    //     button = new five.Button({
+    //         pin: 'P1-11',
+    //         invert: true,
+    //         holdtime: 100
+    //     });
+    // });
 
-    board.repl.inject({
-        button: button
-    });
+    // board.repl.inject({
+    //     button: button
+    // });
 
-    button.on("hold", function() {
-        console.log( "Button held" );
-        player1.y += 10;
-        (new five.Led('P1-13')).on();
-    });
+    // button.on("hold", function() {
+    //     console.log( "Button held" );
+    //     player1.y += 10;
+    //     (new five.Led('P1-13')).on();
+    // });
     // ------END
 
 
@@ -79,11 +80,8 @@ function gameLoop(){
 
 function play() {
 
-    if (down) {
-        ball.y += 10;
-    } else {
-        ball.y -= 10;
-    }
+    ball.x += 10;
+
 
     if (ball.y >= (renderer.height - 30)) {
         down = false;
@@ -91,6 +89,8 @@ function play() {
     if (ball.y <= 10) {
         down = true;
     }
+
+    var colide = (contain(ball, stage));
 }
 
 function contain(sprite, container) {
