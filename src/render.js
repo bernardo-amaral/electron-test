@@ -1,6 +1,6 @@
 const PIXI = require('pixi.js');
 
-// var Raspi = require('raspi-io');
+ //var Raspi = require('raspi-io');
 // var five = require('johnny-five');
 
 var Container = PIXI.Container,
@@ -90,7 +90,7 @@ function play() {
         down = true;
     }
 
-    var colide = (contain(ball, stage));
+    //var colide = (contain(ball, stage));
 }
 
 function contain(sprite, container) {
